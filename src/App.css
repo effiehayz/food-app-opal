@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: auto;
   gap: 5px;
-  place-items: center;
 }
 
 .card {
@@ -193,13 +192,13 @@
   border: 0;
   outline: none;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 
 .checkout .checkout-btn:hover {
-  background-color: #2b2b2f;
+  background-color: #714109;
   color: white;
   cursor: pointer;
 }
@@ -211,10 +210,14 @@ select {
 }
 
 .title {
-  position: relative;
-  left: 40%;
   font-weight: bold;
   font-size: 16px;
+}
+
+.checkout-title {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
 }
 
 button {
@@ -223,8 +226,8 @@ button {
   padding: 5px;
 }
 
-button:hover {
-  background-color: #0e4826;
+.remove-btn:hover {
+  background-color: #a1131e;
   color: white;
   font-weight: bold;
 }
@@ -232,4 +235,18 @@ button:hover {
 .page-heading {
   font-size: 30px;
   font-weight: bolder;
+}
+
+.buy-btn:hover {
+  background-color: #0e4826;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.details {
+  font-size: 16px;
+}
+
+.purchase-details {
+  text-align: center;
 }

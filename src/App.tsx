@@ -8,12 +8,15 @@ function App() {
 
   const [cart, setCart] = useState<Cart>([]);
 
+  const [cartActive, setCartActive] = useState(false);
+
   const addItemToCart = (
     menuItem: MenuItem,
     userChoice: MenuOption,
     quantity: number
   ) => {
     if (userChoice === undefined) return;
+    setCartActive(true);
     setCart((cart) => {
       const copy = [...cart];
       const oldCopy = copy.find(
@@ -62,28 +65,34 @@ function App() {
           </div>
         </div>
       ))}
-
       <div className="card checkout">
-        <h2 className="title">Checkout</h2>
-        <div className="details" role="group" aria-label="Cart Items">
-          {cart.map((cartItem, index) => (
-            <Fragment key={cartItem.name + cartItem.size}>
-              <span>
-                {cartItem.name} ({cartItem.size})
-              </span>
-              <span>
-                {(cartItem.quantity * cartItem.price).toFixed(2)}${" "}
-                <button
-                  onClick={() => removeItemFromCart(index)}
-                  title="Remove item from cart"
-                  aria-label="Remove item"
-                >
-                  X
-                </button>
-              </span>
-            </Fragment>
-          ))}
-        </div>
+        <h2 className="checkout-title">Checkout</h2>
+        {cartActive ? (
+          <div className="details" role="group" aria-label="Cart Items">
+            {cart.map((cartItem, index) => (
+              <Fragment key={cartItem.name + cartItem.size}>
+                <span>
+                  {cartItem.name} ({cartItem.size})
+                </span>
+                <span>
+                  {(cartItem.quantity * cartItem.price).toFixed(2)}${" "}
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeItemFromCart(index)}
+                    title="Remove item from cart"
+                    aria-label="Remove item"
+                  >
+                    X
+                  </button>
+                </span>
+              </Fragment>
+            ))}
+          </div>
+        ) : (
+          <div className="purchase-details">
+            Click the add button to make a purchase
+          </div>
+        )}
         <div className="checkout--footer">
           <label className="price" aria-live="polite">
             <sup>$</sup>
