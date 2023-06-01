@@ -49,6 +49,7 @@ function App() {
 
   return (
     <div className="master-container" role="main">
+      <h1 className="page-heading">Menu Items</h1>
       <h2 className="title">Your cart: {cart.length}</h2>
       {menu.map((item) => (
         <div key={item.item} className="card cart">

@@ -198,6 +198,11 @@
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 
+.checkout .checkout-btn:hover {
+  background-color: #2b2b2f;
+  color: white;
+  cursor: pointer;
+}
 select {
   background-color: #e6e6e6;
   border: none;
@@ -207,7 +212,7 @@ select {
 
 .title {
   position: relative;
-  left: 40%;
+  left: 30%;
   font-weight: bold;
   font-size: 16px;
 }
@@ -222,4 +227,9 @@ button:hover {
   background-color: #0e4826;
   color: white;
   font-weight: bold;
+}
+
+.page-heading {
+  font-size: 30px;
+  font-weight: bolder;
 }
