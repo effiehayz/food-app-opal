@@ -250,3 +250,8 @@ button {
 .purchase-details {
   text-align: center;
 }
+
+.product-name {
+  font-weight: bold;
+  font-size: 18px;
+}
