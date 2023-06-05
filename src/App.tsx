@@ -7,8 +7,8 @@ function App() {
   const { menu } = data;
 
   const [cart, setCart] = useState<Cart>([]);
-
   const [cartActive, setCartActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const addItemToCart = (
     menuItem: MenuItem,
@@ -50,10 +50,24 @@ function App() {
     return price.toFixed(2);
   }, [cart]);
 
+  const handleBuy = () => {
+    if (cart.length > 0) {
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="master-container" role="main">
       <h1 className="page-heading">Menu Items</h1>
-      <h2 className="title">Your cart: {cart.length}</h2>
+      <div className="title-container">
+        <h2 className="title" tabIndex={0}>
+          Your cart: {cart.length}
+        </h2>
+      </div>
       {menu.map((item) => (
         <div key={item.item} className="card cart">
           <div className="products">
@@ -75,7 +89,7 @@ function App() {
                   {cartItem.name} ({cartItem.size})
                 </span>
                 <span>
-                  {(cartItem.quantity * cartItem.price).toFixed(2)}${" "}
+                  {(cartItem.quantity * cartItem.price).toFixed(2)}$
                   <button
                     className="remove-btn"
                     onClick={() => removeItemFromCart(index)}
@@ -93,13 +107,35 @@ function App() {
             Click the add button to make a purchase
           </div>
         )}
+        {showModal && (
+          <div className="modal-container">
+            <div className="modal">
+              <div className="modal-header">
+                <h3>Order Complete</h3>
+              </div>
+              <div className="modal-body">
+                <p>Your order has been completed successfully.</p>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-primary" onClick={closeModal}>
+                  CLOSE
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="checkout--footer">
           <label className="price" aria-live="polite">
             <sup>$</sup>
             {price}
           </label>
-          <button className="checkout-btn" aria-label="Buy">
-            Buy
+          <button
+            className="checkout-btn"
+            aria-label="Buy"
+            disabled={cart.length === 0}
+            onClick={handleBuy}
+          >
+            Buy <i className="modal-icon fas fa-shopping-cart"></i>
           </button>
         </div>
       </div>
